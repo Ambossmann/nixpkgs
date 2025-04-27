@@ -2311,6 +2311,22 @@ let
         };
       };
 
+      hediet.debug-visualizer = buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          name = "debug-visualizer";
+          publisher = "hediet";
+          version = "2.4.0";
+          hash = "sha256-8VAp/aUuG/Xussihgie4mftz1hEUenOzRXvCsUpx+W8=";
+        };
+        meta = {
+          description = "A visual watch window for VS Code that lets you visualize your data structures while debugging.";
+          downloadPage = "https://marketplace.visualstudio.com/items?itemName=hediet.debug-visualizer";
+          homepage = "https://github.com/hediet/vscode-debug-visualizer";
+          license = lib.licenses.gpl3Only;
+          maintainers = [ lib.maintainers.ambossmann ];
+        };
+      };
+
       hediet.vscode-drawio = buildVscodeMarketplaceExtension {
         mktplcRef = {
           name = "vscode-drawio";
