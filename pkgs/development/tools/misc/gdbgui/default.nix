@@ -10,14 +10,14 @@
   pygments,
 }:
 
-buildPythonApplication rec {
+buildPythonApplication (finalAttrs: {
   pname = "gdbgui";
 
   version = "0.15.3.0";
   format = "setuptools";
 
   buildInputs = [ gdb ];
-  propagatedBuildInputs = [
+  dependencies = [
     eventlet
     flask-compress
     flask-socketio
@@ -26,12 +26,12 @@ buildPythonApplication rec {
   ];
 
   src = fetchPypi {
-    inherit pname version;
+    inherit (finalAttrs) pname version;
     hash = "sha256-/HyFE0JnoN03CDyCQCo/Y9RyH4YOMoeB7khReIb8t7Y=";
   };
 
   postPatch = ''
-    echo ${version} > gdbgui/VERSION.txt
+    echo ${finalAttrs.version} > gdbgui/VERSION.txt
     # relax version requirements
     sed -i 's/==.*$//' requirements.txt
   '';
@@ -55,4 +55,4 @@ buildPythonApplication rec {
       dump_stack
     ];
   };
-}
+})
