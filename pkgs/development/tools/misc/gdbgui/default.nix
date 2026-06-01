@@ -2,6 +2,7 @@
   lib,
   buildPythonApplication,
   fetchPypi,
+  setuptools,
   gdb,
   eventlet,
   flask-compress,
@@ -14,8 +15,9 @@ buildPythonApplication (finalAttrs: {
   pname = "gdbgui";
 
   version = "0.15.3.0";
-  format = "setuptools";
+  pyproject = true;
 
+  build-system = [ setuptools ];
   buildInputs = [ gdb ];
   dependencies = [
     eventlet
